@@ -36,7 +36,7 @@ jobs:
         jupyter: true
     - name: Run Pylint
       run: |
-        pylint $(git ls-files '*.py')
+        poetry run pylint $(git ls-files '*.py')
     - name: Run Mypy
       run: mypy .
     - name: Run tests

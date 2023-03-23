@@ -19,3 +19,31 @@ mypy = "^1.1.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pylint.'MESSAGES CONTROL']
+max-line-length = 89
+disable = """
+    raw-checker-failed,
+    bad-inline-option,
+    locally-disabled,
+    file-ignored,
+    suppressed-message,
+    useless-suppression,
+    deprecated-pragma,
+    use-symbolic-message-instead,
+    missing-module-docstring,
+    invalid-name,
+    missing-function-docstring,
+    redefined-outer-name,
+    import-error,
+    missing-class-docstring,
+    too-few-public-methods,
+    attribute-defined-outside-init,
+    too-many-locals,
+    too-many-arguments,
+    too-many-instance-attributes,
+    unused-argument,
+    no-member,
+    arguments-differ,
+    super-init-not-called
+"""
