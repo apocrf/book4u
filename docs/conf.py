@@ -11,9 +11,10 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-from ast import Dict
-import os
-import sys
+# unmock this later
+# from ast import Dict
+# import os
+# import sys
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
