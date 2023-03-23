@@ -9,5 +9,5 @@ async def root():
 
     Returns:
         _type_: _description_
-    """    
+    """
     return {"message": "Welcome to book recommendation system"}
