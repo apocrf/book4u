@@ -38,7 +38,7 @@ jobs:
       run: |
         poetry run pylint $(git ls-files '*.py')
     - name: Run Mypy
-      run: mypy .
+      run: poetry run mypy .
     - name: Run tests
       run: |
-        pytest app/test* 
+        poetry run pytest app/test* 
