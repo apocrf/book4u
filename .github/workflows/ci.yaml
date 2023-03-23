@@ -22,7 +22,7 @@ jobs:
         echo "$pythonVersion = (python --version)" >> $GITHUB_OUTPUT
     - name: Install poetry
       run: |
-        curl -sSL https://install.python-poetry.org | python3 -
+        pip install poetry
     - name: Configure poetry
       run: |
         python -m poetry config virtualenvs.in-project true
