@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import click
 import logging
 from pathlib import Path
+import click
 from dotenv import find_dotenv, load_dotenv
 
 
@@ -27,4 +27,4 @@ if __name__ == "__main__":
     # load up the .env entries as environment variables
     load_dotenv(find_dotenv())
 
-    main()
+    # main() <- unmock when data appear
