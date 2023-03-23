@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "book2u"
+version = "0.1.0"
+description = "Web-based book recommendation system"
+authors = ["Andrey Korotkiy <Andreikorotkiy@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.28.2"
+fastapi = {extras = ["all"], version = "^0.95.0"}
+cookiecutter = "^2.1.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.17.1"
+mypy = "^1.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
