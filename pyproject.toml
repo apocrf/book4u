@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "book2u"
+name = "book4u"
 version = "0.1.0"
 description = "Web-based book recommendation system"
 authors = ["Andrey Korotkiy <Andreikorotkiy@gmail.com>"]
