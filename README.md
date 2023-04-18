@@ -5,6 +5,10 @@ The project was created during the [ML in production](https://ods.ai/tracks/ml-i
 
 Team: Andrey Korotkiy, Kirill Voronin, Kirill Surkov
 
+[Technical Specifications](https://docs.google.com/document/d/10adOioIMCznsNb4mlEI_tjSaYC1CTJD4U8Lh659_K1g/edit?usp=sharing)
+
+[Miro Board](https://miro.com/app/board/uXjVMZlbv2E=/)
+
 Project Organization
 ------------
 
