@@ -6,7 +6,6 @@ class DataLoader:
     Loads data from specified path
     """
 
-
     def load_data(self, path_to_data: str) -> pd.DataFrame:
         """
         Loads and data and unarchives it if needed
