@@ -31,7 +31,7 @@ df_temp = pd.DataFrame(
 
 try:
     df_main = pd.read_parquet("../../data/raw/books.parquet")
-except:
+except FileNotFoundError:
     df_main.to_parquet("../../data/raw/books.parquet")
 
 
@@ -47,7 +47,7 @@ def go(book_id):
         )
         if not genres:
             return
-    except:
+    except (AttributeError, KeyError):
         return
     genres = [_.text for _ in genres]
     if genres[0] != "Книги":
@@ -65,7 +65,7 @@ def go(book_id):
 
     try:
         title = soup.find(name="div", attrs={"id": "product-about"}).h2.text[19:-1]
-    except:
+    except (AttributeError, KeyError, SyntaxError):
         return
     row["title"] = title
 
@@ -99,11 +99,10 @@ def go(book_id):
     df_temp = pd.concat([df_temp, pd.DataFrame(data=row, index=[book_id])])
 
 
-# Первый трейсбэк на странице 622 - не было жанрового описания, поправил такое исключение
+# Первый трейсбэк на странице 622 - не было жанрового описания
+# , поправил такое исключение
 # Второй - длина списка жанров была короче 3-х. Поправил.
-# Остановка на странице : 600 + 2300 = 2900 + 900 = 3800 + 400 = 4200 + 1700 = 5900 + 200 = 6100 + 2600
-# = 8700 + 10500 = 19200 + 3600 = 22800 + 100_800 = 123_600 + 19300 = 142_900 + 2100 = 145_000 + 400
-# = 145_400 + 1600 = 147_000 + 11600 = 158_600 + 10_000 = 168_600 + 400 = 169_000 + 3_500 = 172_500
+# Остановка на странице : 172_500
 
 pool = ThreadPool()
 counter = 0
