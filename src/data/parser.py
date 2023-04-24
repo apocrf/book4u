@@ -1,8 +1,8 @@
+from multiprocessing.dummy import Pool as ThreadPool
 from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 from tqdm import tqdm
-from multiprocessing.dummy import Pool as ThreadPool
 
 df_main = pd.DataFrame(
     columns=[
@@ -35,11 +35,11 @@ except:
     df_main.to_parquet("../../data/raw/books.parquet")
 
 
-def go(id):
+def go(book_id):
     global df_main, df_temp
-    data = requests.get("https://www.labirint.ru/books/" + str(id))
+    data = requests.get("https://www.labirint.ru/books/" + str(book_idid))
     soup = BeautifulSoup(data.text, features="html.parser")
-    object = {}
+    row = {}
 
     try:
         genres = soup.find(name="div", attrs={"id": "thermometer-books"}).find_all(
@@ -54,12 +54,12 @@ def go(id):
         return
     if genres[1] == "Художественная литература":
         genres = genres[1:]
-        object["genres"] = "/".join(genres)
+        row["genres"] = "/".join(genres)
     if len(genres) < 3:
         return
     elif genres[2] == "Детская художественная литература":
         genres = genres[2:]
-        object["genres"] = "/".join(genres)
+        row["genres"] = "/".join(genres)
     else:
         return
 
@@ -67,36 +67,36 @@ def go(id):
         title = soup.find(name="div", attrs={"id": "product-about"}).h2.text[19:-1]
     except:
         return
-    object["title"] = title
+    row["title"] = title
 
     annotation = (
         soup.find(name="div", attrs={"id": "product-about"}).find_all("p")[-1].text
     )
     if len(annotation) <= 100:
         return
-    object["annotation"] = annotation
+    row["annotation"] = annotation
 
     authors = [
         _.text for _ in soup.find_all(name="a", attrs={"data-event-label": "author"})
     ]
     if authors:
-        object["authors"] = "/".join(authors)
+        row["authors"] = "/".join(authors)
 
     publisher = soup.find(name="a", attrs={"data-event-label": "publisher"})
     if publisher:
-        object["publisher"] = publisher
+        row["publisher"] = publisher
 
     rating = float(soup.find(name="div", attrs={"id": "rate"}).text)
-    object["rating"] = rating
+    row["rating"] = rating
 
     rated = soup.find(name="div", attrs={"id": "product-rating-marks-label"}).text
     rated = int(rated.split()[-1][:-1])
-    object["people_rated"] = rated
+    row["people_rated"] = rated
 
     isbn = soup.find(name="div", attrs={"class": "isbn"}).text.split()[1]
-    object["isbn"] = isbn
+    row["isbn"] = isbn
 
-    df_temp = pd.concat([df_temp, pd.DataFrame(data=object, index=[id])])
+    df_temp = pd.concat([df_temp, pd.DataFrame(data=row, index=[book_id])])
 
 
 # Первый трейсбэк на странице 622 - не было жанрового описания, поправил такое исключение
