@@ -1,5 +1,5 @@
-import pandas as pd
 import re
+import pandas as pd
 
 
 class DataCleanser:
@@ -58,7 +58,8 @@ class DataCleanser:
             | self.df["desc"].apply(lambda x: bool(re.search(pattern, x)))
         ).sum()
         print(
-            f"Amount of rows containing non-english letters dropped = {total_unintelligible_rows}"
+            f"""Amount of rows containing non-english letters dropped = 
+            {total_unintelligible_rows}"""
         )
 
         self.df = self.df[
