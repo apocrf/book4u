@@ -36,7 +36,7 @@ class DataCleanser:
 
         self.df = self.df.drop_duplicates(subset=["author", "title"])
 
-    def drop_useless_columns(self, columns: list = ("bookformat", "reviews", "pages")):
+    def drop_useless_columns(self, columns: tuple = ("bookformat", "reviews", "pages")):
         """
         Inplace drop bookformat, reviews and pages columns
         """
