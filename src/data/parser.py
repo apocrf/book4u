@@ -47,7 +47,7 @@ def go(book_id):
         )
         if not genres:
             return
-    except (AttributeError, KeyError):
+    except (KeyError, AttributeError):
         return
     genres = [_.text for _ in genres]
     if genres[0] != "Книги":
