@@ -12,6 +12,8 @@ fastapi = {extras = ["all"], version = "^0.95.0"}
 cookiecutter = "^2.1.1"
 pytest = "^7.2.2"
 pandas = "^2.0.1"
+beautifulsoup4 = "^4.12.2"
+tqdm = "^4.65.0"
 
 
 [tool.poetry.group.dev.dependencies]
