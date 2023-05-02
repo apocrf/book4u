@@ -13,7 +13,7 @@ class DataLoader:
         """
         COMPRESSION = Literal[Literal["gzip"], Literal[None]]
         compression = "gzip" if path_to_data.endswith("gz") else None
-        COMPRESSION = compression
+        COMPRESSION = compression # type: ignore
 
         df = pd.read_csv(path_to_data, compression=COMPRESSION)
 
