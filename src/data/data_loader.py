@@ -11,7 +11,7 @@ class DataLoader:
         """
         Loads and data and unarchives it if needed
         """
-        COMPRESSION = Literal["gzip", None]
+        COMPRESSION = Literal[Literal["gzip"], Literal[None]]
         compression = "gzip" if path_to_data.endswith("gz") else None
         COMPRESSION = compression
 
