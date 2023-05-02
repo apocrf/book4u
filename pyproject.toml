@@ -12,8 +12,6 @@ fastapi = {extras = ["all"], version = "^0.95.0"}
 cookiecutter = "^2.1.1"
 pytest = "^7.2.2"
 pandas = "^2.0.1"
-beautifulsoup4 = "^4.12.2"
-tqdm = "^4.65.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -27,8 +25,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.pylint.'MESSAGES CONTROL']
 max-line-length = 89
 disable = """
-    too-many-return-statements,
-    global-statement,
     raw-checker-failed,
     bad-inline-option,
     locally-disabled,
