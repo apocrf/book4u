@@ -1,5 +1,5 @@
 import pandas as pd
-
+from typing import Literal
 
 class DataLoader:
     """
@@ -10,10 +10,11 @@ class DataLoader:
         """
         Loads and data and unarchives it if needed
         """
-
+        COMPRESSION = Literal['gzip', None]
         compression = "gzip" if path_to_data.endswith("gz") else None
+        COMPRESSION = compression
 
-        df = pd.read_csv(path_to_data, compression=compression)
+        df = pd.read_csv(path_to_data, compression=COMPRESSION)
 
         return df
 
