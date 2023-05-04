@@ -109,8 +109,8 @@ def cleanse_data(input_path: str, output_path: str):
     df_to_cleanse = drop_non_english_books(df_to_cleanse)
 
     df_to_cleanse.to_csv(output_path)
-    print('Cleaning is Done!')
+    print("Cleaning is Done!")
 
 
-if __name__ == 'main':
+if __name__ == "main":
     cleanse_data()
