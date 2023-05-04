@@ -11,7 +11,7 @@ Contains following functions:
     - cleanse_data
 """
 import re
-import click
+# import click
 import pandas as pd
 
 
@@ -52,7 +52,8 @@ def drop_useless_columns(
     df_to_process: pd.DataFrame, columns: tuple = ("bookformat", "reviews", "pages")
 ) -> pd.DataFrame:
     """
-    Drop all columns considered useless. By default it's bookformat, reviews and pages columns
+    Drop all columns considered useless.
+    By default it's bookformat, reviews and pages columns
     :param df_to_process: pd.DataFrame to drop columns from
     :param columns: columns considered useless
     :return: pd.DataFrame with no useless columns
@@ -110,7 +111,3 @@ def cleanse_data(input_path: str, output_path: str):
 
     df_to_cleanse.to_csv(output_path)
     print("Cleaning is Done!")
-
-
-if __name__ == "main":
-    cleanse_data()
