@@ -11,8 +11,7 @@ Contains following functions:
     - cleanse_data
 """
 import re
-
-# import click
+import click
 import pandas as pd
 
 
@@ -92,9 +91,9 @@ def drop_non_english_books(df_to_process: pd.DataFrame) -> pd.DataFrame:
     return df_to_process
 
 
-# @click.command()
-# @click.argument("input_path", type=click.Path(exists=True))
-# @click.argument("output_path", type=click.Path())
+@click.command()
+@click.argument("input_path", type=click.Path(exists=True))
+@click.argument("output_path", type=click.Path())
 def cleanse_data(input_path: str, output_path: str):
     """
     Successively executes drop_important_nans, drop_repeated_books,
@@ -112,3 +111,7 @@ def cleanse_data(input_path: str, output_path: str):
 
     df_to_cleanse.to_csv(output_path)
     print("Cleaning is Done!")
+
+
+if __name__ == '__main__':
+    cleanse_data()
