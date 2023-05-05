@@ -113,5 +113,5 @@ def cleanse_data(input_path: str, output_path: str):
     print("Cleaning is Done!")
 
 
-if __name__ == '__main__':
-    cleanse_data()
+if __name__ == "__main__":
+    cleanse_data()  # pylint: disable=no-value-for-parameter
