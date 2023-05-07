@@ -1,0 +1,5 @@
+[core]
+    remote = b4u
+['remote "b4u"']
+    url = s3://b4u
+    endpointurl = https://console.cloud.yandex.ru
