@@ -1,0 +1,4 @@
+outs:
+- md5: cd0efb64102bfc946a3b5a4d53c681cb
+  size: 54194301
+  path: GoodReads_books_clean.csv
