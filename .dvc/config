@@ -1,0 +1,6 @@
+[core]
+    remote = b4u
+['remote "b4u"']
+    url = s3://b4u
+    endpointurl = http://storage.yandexcloud.net
+

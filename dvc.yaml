@@ -1,0 +1,8 @@
+stages:
+  clean_data:
+    cmd: python .\src\data\data_cleanser.py .\data\raw\GoodReads_100k_books.csv .\data\interim\GoodReads_books_clean.csv
+    deps:
+    - .\data\raw\GoodReads_100k_books.csv
+    - .\src\data\data_cleanser.py
+    outs:
+    - .\data\interim\GoodReads_books_clean.csv

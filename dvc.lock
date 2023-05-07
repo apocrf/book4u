@@ -1,0 +1,15 @@
+schema: '2.0'
+stages:
+  clean_data:
+    cmd: python .\src\data\data_cleanser.py .\data\raw\GoodReads_100k_books.csv .\data\interim\GoodReads_books_clean.csv
+    deps:
+    - path: .\data\raw\GoodReads_100k_books.csv
+      md5: cbc104379fdcc733a04ee499298ce133
+      size: 120165547
+    - path: .\src\data\data_cleanser.py
+      md5: dbe9864f53cea36141f56940ee394a4f
+      size: 3979
+    outs:
+    - path: .\data\interim\GoodReads_books_clean.csv
+      md5: cd0efb64102bfc946a3b5a4d53c681cb
+      size: 54194301
