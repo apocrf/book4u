@@ -1,0 +1,48 @@
+stages:
+  - Format
+  - Static Analysis
+  - Test
+  - Deploy
+
+default:
+  image: python:3.11
+  cache:
+    paths:
+      - .cache/pip
+  before_script:
+    - apt -y update
+    - apt -y install apt-utils
+    - apt -y install net-tools 
+    - apt -y upgrade
+    - pip install poetry
+    - poetry config virtualenvs.create false
+    - poetry install
+
+black:
+  stage: Format
+  script:
+    - black --check --diff --verbose .
+
+pylint:
+  stage: Static Analysis
+  script:
+    - poetry run pylint $(git ls-files '*.py')
+
+mypy:
+  stage: Static Analysis
+  script:
+    - poetry run mypy .
+
+model-tests:
+  stage: Test
+  script:
+    - echo "test model"
+
+fastapi-tests:
+  stage: Test
+  script:
+    - echo "test fastapi"
+
+deploy:
+  stage: Deploy
+  script: echo "Deployment script!"
