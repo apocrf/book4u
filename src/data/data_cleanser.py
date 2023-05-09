@@ -109,7 +109,13 @@ def cleanse_data(input_path: str, output_path: str):
     df_to_cleanse = drop_useless_columns(df_to_cleanse)
     df_to_cleanse = drop_non_english_books(df_to_cleanse)
 
-    df_to_cleanse.to_csv(output_path)
+    if output_path.endswith("csv"):
+        df_to_cleanse.to_csv(output_path)
+    elif output_path.endswith("parquet"):
+        df_to_cleanse.to_parquet(output_path)
+    else:
+        print("Only .csv and .parquet are allowed as save formats.")
+        return
     print("Cleaning is Done!")
 
 
