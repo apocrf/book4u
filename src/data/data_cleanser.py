@@ -108,6 +108,7 @@ def cleanse_data(input_path: str, output_path: str):
     df_to_cleanse = drop_repeated_books(df_to_cleanse)
     df_to_cleanse = drop_useless_columns(df_to_cleanse)
     df_to_cleanse = drop_non_english_books(df_to_cleanse)
+    df_to_cleanse = df_to_cleanse.reset_index(drop=True)
 
     if output_path.endswith("csv"):
         df_to_cleanse.to_csv(output_path)
