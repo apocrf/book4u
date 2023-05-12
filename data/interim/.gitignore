@@ -1,2 +1,4 @@
 GoodReads_books_clean.csv
 /GoodReads_books_clean.parquet
+/extended_descriptions.parquet
+/extended_max_descriptions.parquet
