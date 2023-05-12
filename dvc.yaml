@@ -6,3 +6,11 @@ stages:
     - .\src\data\data_cleanser.py
     outs:
     - .\data\interim\GoodReads_books_clean.parquet
+  generate_extended_text:
+    cmd: python .\src\features\text_features_generator.py .\data\interim\GoodReads_books_clean.parquet .\data\interim\extended_descriptions.parquet
+    deps:
+      - .\src\features\text_features_generator.py
+      - .\data\interim\GoodReads_books_clean.parquet
+    outs:
+      - .\data\interim\extended_descriptions.parquet
+      - .\data\interim\extended_max_descriptions.parquet
