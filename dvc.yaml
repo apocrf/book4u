@@ -1,8 +1,16 @@
 stages:
   clean_data:
-    cmd: python .\src\data\data_cleanser.py .\data\raw\GoodReads_100k_books.csv .\data\interim\GoodReads_books_clean.csv
+    cmd: python .\src\data\data_cleanser.py .\data\raw\GoodReads_100k_books.csv .\data\interim\GoodReads_books_clean.parquet
     deps:
     - .\data\raw\GoodReads_100k_books.csv
     - .\src\data\data_cleanser.py
     outs:
-    - .\data\interim\GoodReads_books_clean.csv
+    - .\data\interim\GoodReads_books_clean.parquet
+  generate_extended_text:
+    cmd: python .\src\features\text_features_generator.py .\data\interim\GoodReads_books_clean.parquet .\data\interim\extended_descriptions.parquet
+    deps:
+      - .\src\features\text_features_generator.py
+      - .\data\interim\GoodReads_books_clean.parquet
+    outs:
+      - .\data\interim\extended_descriptions.parquet
+      - .\data\interim\extended_max_descriptions.parquet

@@ -1,15 +1,32 @@
 schema: '2.0'
 stages:
   clean_data:
-    cmd: python .\src\data\data_cleanser.py .\data\raw\GoodReads_100k_books.csv .\data\interim\GoodReads_books_clean.csv
+    cmd: python .\src\data\data_cleanser.py .\data\raw\GoodReads_100k_books.csv .\data\interim\GoodReads_books_clean.parquet
     deps:
     - path: .\data\raw\GoodReads_100k_books.csv
       md5: cbc104379fdcc733a04ee499298ce133
       size: 120165547
     - path: .\src\data\data_cleanser.py
-      md5: dbe9864f53cea36141f56940ee394a4f
-      size: 3979
+      md5: 2a62cf080fdfcfcf1b93f1354731cb1d
+      size: 4265
     outs:
-    - path: .\data\interim\GoodReads_books_clean.csv
-      md5: cd0efb64102bfc946a3b5a4d53c681cb
-      size: 54194301
+    - path: .\data\interim\GoodReads_books_clean.parquet
+      md5: 87090f189597833999b3ff7604c6b41e
+      size: 31158809
+  generate_extended_text:
+    cmd: python .\src\features\text_features_generator.py .\data\interim\GoodReads_books_clean.parquet
+      .\data\interim\extended_descriptions.parquet
+    deps:
+    - path: .\data\interim\GoodReads_books_clean.parquet
+      md5: 87090f189597833999b3ff7604c6b41e
+      size: 31158809
+    - path: .\src\features\text_features_generator.py
+      md5: 19b286929913a2ef8ec413caa9e4d920
+      size: 3047
+    outs:
+    - path: .\data\interim\extended_descriptions.parquet
+      md5: 1301e602b10eabc1820fb295ca852e46
+      size: 27445122
+    - path: .\data\interim\extended_max_descriptions.parquet
+      md5: 90e07fef548cce5eda1b99c278602ea3
+      size: 29621926
