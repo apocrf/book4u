@@ -29,7 +29,7 @@ def text_to_vec(
     :return: np.array representing vectorized text
     """
     with torch.no_grad():
-        inputs = tokenizer(text, return_tensors="pt")["input_ids"]
+        inputs = tokenizer(text, return_tensors="pt", verbose=False)["input_ids"]
         if inputs.shape[-1] > 512:
             inputs = torch.cat((inputs[0, :129], inputs[0, -383:]))
             inputs = inputs.reshape(1, -1)
@@ -50,6 +50,7 @@ def text_to_vec(
     type=click.INT,
 )
 def vectorize_data(input_path: str, output_path: str, batch_size: int):
+    print(f"Device: {device}")
     df_to_vectorize = pd.read_parquet(input_path, columns=["desc"])
     try:
         batch_start = pd.read_parquet(output_path).index[-1]
