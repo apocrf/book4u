@@ -23,10 +23,11 @@ def text_to_vec(
 ) -> np.ndarray:
     """
     Vectorizes text using BERT-model.
-    :text: str to vetorize
-    :tokenizer:
-    :model: vectorizing NLP-model
-    :return: np.array representing vectorized text
+    :param text: str to vectorize
+    :param tokenizer: text tokenizer
+    :param model: model to vectorize text
+    :param device: device to transfer model to
+    :return: np.ndarray representing vectorized text
     """
     with torch.no_grad():
         inputs = tokenizer(text, return_tensors="pt", verbose=False)["input_ids"]
@@ -50,6 +51,13 @@ def text_to_vec(
     type=click.INT,
 )
 def vectorize_data(input_path: str, output_path: str, batch_size: int):
+    """
+    Create and save pd.Dataframe containing vectorized book descriptions
+    in .parquet format. Transformation to vectors realized by batches.
+    :param input_path: Path to read interim .parquet from
+    :param output_path: Path to save vectorized data in .parquet
+    :param batch_size: size of the batch
+    """
     print(f"Device: {device}")
     df_to_vectorize = pd.read_parquet(input_path, columns=["desc"])
     try:
