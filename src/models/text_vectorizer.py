@@ -40,6 +40,8 @@ def text_to_vec(
     hidden_states = outputs[2]
     token_vecs = hidden_states[-2][0]
     sentence_embedding = torch.mean(token_vecs, dim=0).numpy()
+    if device.type == "cuda":
+        torch.cuda.empty_cache()
     return sentence_embedding
 
 
