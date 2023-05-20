@@ -20,12 +20,12 @@ if __name__ == "__main__":
         [CLEANED_DATA_PATH, TRANSFORMED_DATA_PATH], standalone_mode=False
     )
     src.vectorize_data(  # pylint: disable=no-value-for-parameter
-        [CLEANED_DATA_PATH, VECTORIZED_SHORT_DATA_PATH, "100"], standalone_mode=False
+        [CLEANED_DATA_PATH, VECTORIZED_SHORT_DATA_PATH, "300"], standalone_mode=False
     )
     src.vectorize_data(  # pylint: disable=no-value-for-parameter
-        [TRANSFORMED_DATA_PATH, VECTORIZED_DATA_PATH, "100"], standalone_mode=False
+        [TRANSFORMED_DATA_PATH, VECTORIZED_DATA_PATH, "300"], standalone_mode=False
     )
     src.vectorize_data(  # pylint: disable=no-value-for-parameter
-        [TRANSFORMED_MAX_DATA_PATH, VECTORIZED_MAX_DATA_PATH, "100"],
+        [TRANSFORMED_MAX_DATA_PATH, VECTORIZED_MAX_DATA_PATH, "300"],
         standalone_mode=False,
     )
