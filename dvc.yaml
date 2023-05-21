@@ -2,10 +2,10 @@ stages:
   clean_data:
     cmd: python .\src\data\data_cleanser.py .\data\raw\GoodReads_100k_books.csv .\data\interim\GoodReads_books_clean.parquet
     deps:
-    - .\data\raw\GoodReads_100k_books.csv
-    - .\src\data\data_cleanser.py
+      - .\data\raw\GoodReads_100k_books.csv
+      - .\src\data\data_cleanser.py
     outs:
-    - .\data\interim\GoodReads_books_clean.parquet
+      - .\data\interim\GoodReads_books_clean.parquet
   generate_extended_text:
     cmd: python .\src\features\text_features_generator.py .\data\interim\GoodReads_books_clean.parquet .\data\interim\extended_descriptions.parquet
     deps:
@@ -15,23 +15,29 @@ stages:
       - .\data\interim\extended_descriptions.parquet
       - .\data\interim\extended_max_descriptions.parquet
   generate_short_vectorized_text:
-    cmd: python .\src\models\text_vectorizer.py .\data\interim\GoodReads_books_clean.parquet .\data\processed\short_description_vectorized.parquet 100
+    cmd: python .\src\models\text_vectorizer.py .\data\interim\GoodReads_books_clean.parquet .\data\processed\short_description_vectorized.parquet
     deps:
       - .\src\models\text_vectorizer.py
       - .\data\interim\GoodReads_books_clean.parquet
+    params:
+      - vectorise.batch_size
     outs:
       - .\data\processed\short_description_vectorized.parquet
   generate_vectorized_text:
-    cmd: python .\src\models\text_vectorizer.py .\data\interim\extended_descriptions.parquet .\data\processed\description_vectorized.parquet 100
+    cmd: python .\src\models\text_vectorizer.py .\data\interim\extended_descriptions.parquet .\data\processed\description_vectorized.parquet
     deps:
       - .\src\models\text_vectorizer.py
       - .\data\interim\extended_descriptions.parquet
+    params:
+      - vectorise.batch_size
     outs:
       - .\data\processed\description_vectorized.parquet
   generate_max_vectorized_text:
-    cmd: python .\src\models\text_vectorizer.py .\data\interim\extended_max_descriptions.parquet .\data\processed\max_description_vectorized.parquet 100
+    cmd: python .\src\models\text_vectorizer.py .\data\interim\extended_max_descriptions.parquet .\data\processed\max_description_vectorized.parquet
     deps:
       - .\src\models\text_vectorizer.py
       - .\data\interim\extended_max_descriptions.parquet
+    params:
+      - vectorise.batch_size
     outs:
       - .\data\processed\max_description_vectorized.parquet
