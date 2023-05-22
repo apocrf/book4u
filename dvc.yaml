@@ -15,7 +15,7 @@ stages:
       - .\data\interim\extended_descriptions.parquet
       - .\data\interim\extended_max_descriptions.parquet
   generate_short_vectorized_text:
-    cmd: python .\src\models\text_vectorizer.py .\data\interim\GoodReads_books_clean.parquet .\data\processed\short_description_vectorized.parquet
+    cmd: python .\src\models\text_vectorizer.py .\data\interim\GoodReads_books_clean.parquet .\data\processed\short_description_vectorized.parquet vectorise.batch_size
     deps:
       - .\src\models\text_vectorizer.py
       - .\data\interim\GoodReads_books_clean.parquet
@@ -24,7 +24,7 @@ stages:
     outs:
       - .\data\processed\short_description_vectorized.parquet
   generate_vectorized_text:
-    cmd: python .\src\models\text_vectorizer.py .\data\interim\extended_descriptions.parquet .\data\processed\description_vectorized.parquet
+    cmd: python .\src\models\text_vectorizer.py .\data\interim\extended_descriptions.parquet .\data\processed\description_vectorized.parquet vectorise.batch_size
     deps:
       - .\src\models\text_vectorizer.py
       - .\data\interim\extended_descriptions.parquet
@@ -33,7 +33,7 @@ stages:
     outs:
       - .\data\processed\description_vectorized.parquet
   generate_max_vectorized_text:
-    cmd: python .\src\models\text_vectorizer.py .\data\interim\extended_max_descriptions.parquet .\data\processed\max_description_vectorized.parquet
+    cmd: python .\src\models\text_vectorizer.py .\data\interim\extended_max_descriptions.parquet .\data\processed\max_description_vectorized.parquet vectorise.batch_size
     deps:
       - .\src\models\text_vectorizer.py
       - .\data\interim\extended_max_descriptions.parquet
