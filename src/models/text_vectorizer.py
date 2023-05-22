@@ -6,7 +6,7 @@ import pandas as pd
 import torch
 import transformers  # type: ignore
 from transformers import BertTokenizer, BertModel
-import yaml
+import yaml  # type: ignore
 
 
 TOKENIZER = BertTokenizer.from_pretrained("bert-base-uncased")
@@ -71,7 +71,7 @@ def vectorize_data(input_path: str, output_path: str, params_path: str):
         batch_start += 1
     except FileNotFoundError:
         batch_start = 0
-    while batch_start <= df_to_vectorize.shape[0]:
+    while batch_start <= df_to_vectorize.shape[0]:  # type: ignore
         batch_end = batch_start + batch_size - 1
         print(
             f"Vectorizing descriptions from id = {batch_start} to id = {batch_end} ... ",
