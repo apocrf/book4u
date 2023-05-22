@@ -62,17 +62,16 @@ def vectorize_data(input_path: str, output_path: str, params_path: str):
     print(f"Device: {device}")
     with open(params_path, "r", encoding="utf-8") as f:
         params = yaml.safe_load(f)
-    batch_size = params["vectorize"]["batch_size"]
+    batch_size: int = params["vectorize"]["batch_size"]
     df_to_vectorize = pd.read_parquet(input_path, columns=["desc"])
     try:
-        batch_start = pd.read_parquet(output_path).index[-1]
+        batch_start: int = pd.read_parquet(output_path).index[-1]
         assert isinstance(batch_start, np.int64)
-        batch_start = int(batch_start)
         batch_start += 1
     except FileNotFoundError:
         batch_start = 0
     while batch_start <= df_to_vectorize.shape[0]:  # type: ignore
-        batch_end = batch_start + batch_size - 1
+        batch_end: int = batch_start + batch_size - 1
         print(
             f"Vectorizing descriptions from id = {batch_start} to id = {batch_end} ... ",
             end="",
