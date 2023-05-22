@@ -6,6 +6,8 @@ import pandas as pd
 import torch
 import transformers  # type: ignore
 from transformers import BertTokenizer, BertModel
+import yaml
+
 
 TOKENIZER = BertTokenizer.from_pretrained("bert-base-uncased")
 MODEL = BertModel.from_pretrained(
@@ -48,11 +50,8 @@ def text_to_vec(
 @click.command()
 @click.argument("input_path", type=click.Path(exists=True))
 @click.argument("output_path", type=click.Path())
-@click.argument(
-    "batch_size",
-    type=click.INT,
-)
-def vectorize_data(input_path: str, output_path: str, batch_size: int):
+@click.argument("params_path", type=click.Path(exists=True))
+def vectorize_data(input_path: str, output_path: str, params_path: str):
     """
     Create and save pd.Dataframe containing vectorized book descriptions
     in .parquet format. Transformation to vectors realized by batches.
@@ -61,6 +60,9 @@ def vectorize_data(input_path: str, output_path: str, batch_size: int):
     :param batch_size: size of the batch
     """
     print(f"Device: {device}")
+    with open(params_path, "r") as f:
+        params = yaml.safe_load(f)
+    batch_size = params["vectorize"]["batch_size"]
     df_to_vectorize = pd.read_parquet(input_path, columns=["desc"])
     try:
         batch_start = pd.read_parquet(output_path).index[-1]

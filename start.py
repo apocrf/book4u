@@ -7,6 +7,7 @@ TRANSFORMED_MAX_DATA_PATH = "data/interim/extended_max_descriptions.parquet"
 VECTORIZED_SHORT_DATA_PATH = "data/processed/short_description_vectorized.parquet"
 VECTORIZED_DATA_PATH = "data/processed/description_vectorized.parquet"
 VECTORIZED_MAX_DATA_PATH = "data/processed/max_description.parquet"
+PARAMS_PATH = "params.yaml"
 
 if __name__ == "__main__":
     src.cleanse_data(  # pylint: disable=no-value-for-parameter
@@ -20,12 +21,14 @@ if __name__ == "__main__":
         [CLEANED_DATA_PATH, TRANSFORMED_DATA_PATH], standalone_mode=False
     )
     src.vectorize_data(  # pylint: disable=no-value-for-parameter
-        [CLEANED_DATA_PATH, VECTORIZED_SHORT_DATA_PATH, "100"], standalone_mode=False
+        [CLEANED_DATA_PATH, VECTORIZED_SHORT_DATA_PATH, PARAMS_PATH],
+        standalone_mode=False,
     )
     src.vectorize_data(  # pylint: disable=no-value-for-parameter
-        [TRANSFORMED_DATA_PATH, VECTORIZED_DATA_PATH, "100"], standalone_mode=False
+        [TRANSFORMED_DATA_PATH, VECTORIZED_DATA_PATH, PARAMS_PATH],
+        standalone_mode=False,
     )
     src.vectorize_data(  # pylint: disable=no-value-for-parameter
-        [TRANSFORMED_MAX_DATA_PATH, VECTORIZED_MAX_DATA_PATH, "100"],
+        [TRANSFORMED_MAX_DATA_PATH, VECTORIZED_MAX_DATA_PATH, PARAMS_PATH],
         standalone_mode=False,
     )
