@@ -65,8 +65,9 @@ def vectorize_data(input_path: str, output_path: str, params_path: str):
     batch_size: int = params["vectorize"]["batch_size"]
     df_to_vectorize = pd.read_parquet(input_path, columns=["desc"])
     try:
-        batch_start: int = int(pd.read_parquet(output_path).index[-1])
+        batch_start = pd.read_parquet(output_path).index[-1]
         assert isinstance(batch_start, np.int64)
+        batch_start = int(batch_start)
         batch_start += 1
     except FileNotFoundError:
         batch_start = 0
