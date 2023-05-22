@@ -60,7 +60,7 @@ def vectorize_data(input_path: str, output_path: str, params_path: str):
     :param batch_size: size of the batch
     """
     print(f"Device: {device}")
-    with open(params_path, "r") as f:
+    with open(params_path, "r", encoding="utf-8") as f:
         params = yaml.safe_load(f)
     batch_size = params["vectorize"]["batch_size"]
     df_to_vectorize = pd.read_parquet(input_path, columns=["desc"])
