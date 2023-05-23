@@ -12,24 +12,30 @@ Contains following functions:
 """
 import re
 import click
+import numpy as np
 import pandas as pd
 
+import mlflow
 
-def drop_important_nans(df_to_process: pd.DataFrame) -> pd.DataFrame:
+mlflow.client.MlflowClient("http://localhost:5000")
+mlflow.set_tracking_uri("http://locahost:5000")
+mlflow.set_experiment("cleaning_dataset")
+
+
+def drop_important_nans(df_to_process: pd.DataFrame, columns: tuple = ("desc", "genre", "author", "title")) -> pd.DataFrame:
     """
-    Drop all rows containing Nans in book description, genre, author or title
+    Drop all rows containing Nans in columns considered important
     :param df_to_process: pd.DataFrame to drop Nans from
+    :param columns: tuple of columns considered important
     :return: pd.DataFrame with no Nans
     """
-    total_nans_dropped = (
-        df_to_process["desc"].isna()
-        | df_to_process["genre"].isna()
-        | df_to_process["author"].isna()
-        | df_to_process["title"].isna()
-    ).sum()
+    total_nans_dropped = np.sum(np.logical_or.reduce([df_to_process[_].isna() for _ in columns]))
     print(f"Amount of rows with Nans dropped = {total_nans_dropped}")
 
-    df_to_process = df_to_process.dropna(subset=["desc", "genre", "author", "title"])
+    # mlflow.log_param()
+    mlflow.log_text(f"Amount of rows with Nans dropped = {total_nans_dropped}", "cleansing_results.txt")
+
+    df_to_process = df_to_process.dropna(subset=columns)
 
     return df_to_process
 
