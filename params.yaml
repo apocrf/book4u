@@ -1,0 +1,2 @@
+vectorize:
+  batch_size: 100
