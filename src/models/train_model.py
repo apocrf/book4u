@@ -1,14 +1,10 @@
-import click
-
-import pandas as pd
-
-from sklearn.neighbors import NearestNeighbors  # type: ignore
-
-import joblib  # type: ignore
-
-import mlflow
 import os
+import click
+import mlflow
+import joblib  # type: ignore
+import pandas as pd
 from dotenv import load_dotenv  # type: ignore
+from sklearn.neighbors import NearestNeighbors  # type: ignore
 
 load_dotenv()
 remote_server_uri = os.getenv("MLFLOW_TRACKING_URI")
