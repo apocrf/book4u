@@ -1,6 +1,6 @@
 import os
 import click
-import mlflow
+import mlflow  # type: ignore
 import joblib  # type: ignore
 import pandas as pd
 from dotenv import load_dotenv  # type: ignore
