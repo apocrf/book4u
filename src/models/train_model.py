@@ -32,5 +32,5 @@ def train_model(input_path: str, output_path: str):
         mlflow.sklearn.log_model(
             sk_model=nn_model,
             artifact_path="model",
-            registered_model_name="real_estate_nn",
+            registered_model_name="book_nn",
         )
