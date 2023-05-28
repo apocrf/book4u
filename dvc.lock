@@ -7,8 +7,8 @@ stages:
       md5: cbc104379fdcc733a04ee499298ce133
       size: 120165547
     - path: ./src/data/data_cleanser.py
-      md5: 2a62cf080fdfcfcf1b93f1354731cb1d
-      size: 4141
+      md5: 469f3273f9446f5e238776dd7c9fe111
+      size: 4464
     outs:
     - path: ./data/interim/GoodReads_books_clean.parquet
       md5: 87090f189597833999b3ff7604c6b41e
@@ -32,43 +32,52 @@ stages:
       size: 29621926
   generate_vectorized_text:
     cmd: python ./src/models/text_vectorizer.py ./data/interim/extended_descriptions.parquet
-      ./data/processed/description_vectorized.parquet 300
+      ./data/processed/description_vectorized.parquet params.yaml
     deps:
     - path: ./data/interim/extended_descriptions.parquet
       md5: 1301e602b10eabc1820fb295ca852e46
       size: 27445122
     - path: ./src/models/text_vectorizer.py
-      md5: d6bd3431fb0be5aabb5a343b981533fa
-      size: 3595
+      md5: 45f424890680f5547eb8256138ac27a1
+      size: 3797
+    params:
+      params.yaml:
+        vectorize.batch_size: 100
     outs:
     - path: ./data/processed/description_vectorized.parquet
-      md5: 9cd3031de60256de48e0f0d0f7c30a2f
-      size: 162777773
+      md5: 3f2d87e757d0f6836180f67d7ad10c1b
+      size: 188340334
   generate_short_vectorized_text:
     cmd: python ./src/models/text_vectorizer.py ./data/interim/GoodReads_books_clean.parquet
-      ./data/processed/short_description_vectorized.parquet 300
+      ./data/processed/short_description_vectorized.parquet params.yaml
     deps:
     - path: ./data/interim/GoodReads_books_clean.parquet
       md5: 87090f189597833999b3ff7604c6b41e
       size: 31158809
     - path: ./src/models/text_vectorizer.py
-      md5: d6bd3431fb0be5aabb5a343b981533fa
-      size: 3595
+      md5: 45f424890680f5547eb8256138ac27a1
+      size: 3797
+    params:
+      params.yaml:
+        vectorize.batch_size: 100
     outs:
     - path: ./data/processed/short_description_vectorized.parquet
-      md5: 3b647fb6b5a0e495af4ffe0c6da0b22b
-      size: 162773002
+      md5: ce9d1b438b8402d266f6f53fc0c45185
+      size: 188289845
   generate_max_vectorized_text:
     cmd: python ./src/models/text_vectorizer.py ./data/interim/extended_max_descriptions.parquet
-      ./data/processed/max_description_vectorized.parquet 300
+      ./data/processed/max_description_vectorized.parquet params.yaml
     deps:
     - path: ./data/interim/extended_max_descriptions.parquet
       md5: 90e07fef548cce5eda1b99c278602ea3
       size: 29621926
     - path: ./src/models/text_vectorizer.py
-      md5: d6bd3431fb0be5aabb5a343b981533fa
-      size: 3595
+      md5: 45f424890680f5547eb8256138ac27a1
+      size: 3797
+    params:
+      params.yaml:
+        vectorize.batch_size: 100
     outs:
     - path: ./data/processed/max_description_vectorized.parquet
-      md5: 60d0ff5dc0b7a8d18025a1c1c01c5004
-      size: 162778067
+      md5: 402d0fcaad995b216fc2480556f2ed1d
+      size: 188342105
