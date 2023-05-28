@@ -1,1 +1,0 @@
-Amount of rows with Nans dropped = 0
