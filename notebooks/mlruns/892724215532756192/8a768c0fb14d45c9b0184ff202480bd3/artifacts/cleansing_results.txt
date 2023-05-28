@@ -1,0 +1,1 @@
+Amount of rows with Nans dropped = 14515
