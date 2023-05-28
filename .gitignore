@@ -55,6 +55,12 @@ coverage.xml
 *.mo
 *.pot
 
+# Parquets
+*.parquet
+
+# Models
+*.sav
+
 # Django stuff:
 *.log
 local_settings.py
@@ -130,3 +136,8 @@ dmypy.json
 
 # IDE
 .idea
+
+# mlflow runs
+/mlruns
+/docker/mlruns
+/docker/mlflow_image/mlruns
