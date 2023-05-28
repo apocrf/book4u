@@ -15,7 +15,7 @@ import click
 import numpy as np
 import pandas as pd
 
-import mlflow
+import mlflow  # type: ignore
 
 
 def drop_important_nans(
