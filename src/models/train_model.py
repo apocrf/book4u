@@ -35,4 +35,4 @@ def train_model(input_path: str, output_path: str):
 
 
 if __name__ == "__main__":
-    train_model()
+    train_model()  # pylint: disable=no-value-for-parameter
