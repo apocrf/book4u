@@ -43,7 +43,7 @@ Project Organization
     │
     ├── pyproject.toml     <- Project settings and configuration.
     │
-    ├── app                <- FastAPI here.      
+    ├── b4u_serving        <- FastAPI here.      
     │
     ├── tests              <- Tests here. 
     │
