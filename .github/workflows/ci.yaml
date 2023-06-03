@@ -38,4 +38,4 @@ jobs:
       run: poetry run mypy .
     - name: Run tests
       run: |
-        poetry run pytest b4u_serving/test* 
+        poetry run pytest tests/test* 
