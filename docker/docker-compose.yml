@@ -2,6 +2,7 @@ version: "3.9"
 services:
 
   minio:
+    container_name: minioS3
     image: minio/minio:latest
     command: server --console-address ":9001" /data/
     ports:
@@ -45,9 +46,11 @@ services:
       - my-data:/var/lib/pgadmin
     ports:
       - "5050:80"
+    depends_on:
+      - db
 
   mlflow:
-    container_name: tracker_mlflow
+    container_name: mlflow
     image: tracker_ml
     restart: unless-stopped
     build:
@@ -92,6 +95,18 @@ services:
     volumes:
       - portainer_sock:/var/run/docker.sock
       - portainer_volume:/var/lib/docker/volumes
+
+  nginx:
+    restart: always
+    build: ./nginx_image
+    image: mlflow_nginx
+    container_name: mlflow_nginx
+    ports:
+        - "8080:80"
+    links:
+        - mlflow
+    depends_on:
+        - mlflow
 
 volumes:
   db_volume:
