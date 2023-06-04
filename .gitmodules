@@ -1,0 +1,3 @@
+[submodule "b4u_serving"]
+	path = b4u_serving
+	url = git@github.com:Andreilinch/b4u_serving.git
