@@ -1,6 +1,6 @@
 [core]
-    remote = b4u
-['remote "b4u"']
+    remote = minio
+['remote "minio"']
     url = s3://b4u
-    endpointurl = http://storage.yandexcloud.net
+    endpointurl = http://localhost:9000
 
