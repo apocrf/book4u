@@ -21,6 +21,6 @@ def make_id_mapping(input_path: str, output_path: str):
 
 if __name__ == "__main__":
     mlflow.set_tracking_uri("http://localhost:5000")
-    mlflow.set_experiment("mapping_dataset")
+    mlflow.set_experiment("full_id_mapping")
     with mlflow.start_run() as run:
         make_id_mapping()  # pylint: disable=no-value-for-parameter
