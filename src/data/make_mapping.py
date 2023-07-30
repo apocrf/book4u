@@ -7,7 +7,7 @@ import mlflow  # type: ignore
 @click.command()
 @click.argument("input_path", type=click.Path(exists=True))
 @click.argument("output_path", type=click.Path())
-def make_id_mapping(input_path: str, output_path: str):
+def make_full_id_mapping(input_path: str, output_path: str):
     """
     Makes id mapping file. Required for Redis.
     :param input_path: Path to read raw csv from
