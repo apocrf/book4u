@@ -6,6 +6,11 @@ stages:
       - .\src\data\data_cleanser.py
     outs:
       - .\data\interim\GoodReads_books_clean.parquet
+  make_mapping:
+    cmd: python ./src/data/make_mapping.py ./data/raw/GoodReads_books_clean.parquet ./data/interim/id_mapping.parquet
+    deps:
+      - ./data/raw/GoodReads_books_clean.parquet
+      - ./src/data/make_mapping.py
   generate_extended_text:
     cmd: python ./src/features/text_features_generator.py ./data/interim/GoodReads_books_clean.parquet ./data/interim/extended_descriptions.parquet
     deps:
