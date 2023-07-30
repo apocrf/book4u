@@ -14,7 +14,7 @@ def make_id_mapping(input_path: str, output_path: str):
     :param output_path: Path to save cleansed dataframe in csv format
     """
     df_to_map = pd.read_parquet(input_path)
-    df_to_map[['author', 'title', 'desc']].to_parquet(output_path)
+    df_to_map[["author", "title", "desc"]].to_parquet(output_path)
 
     print("Mapping is Done!")
 
