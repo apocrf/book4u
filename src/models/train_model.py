@@ -8,6 +8,8 @@ from sklearn.neighbors import NearestNeighbors  # type: ignore
 
 load_dotenv()
 
+EXPERIMENT_NAME = "train_b4u_knn"
+
 
 @click.command()
 @click.argument("input_path", type=click.Path(exists=True))
@@ -18,10 +20,13 @@ def train_model(input_path: str, output_path: str):
     :param input_path:
     :param output_path:
     """
+
     mlflow.set_tracking_uri("http://localhost:5000")
+    mlflow.set_experiment(EXPERIMENT_NAME)
 
     with mlflow.start_run():
         print("start mlflow session...")
+        print(mlflow.get_artifact_uri())
 
         df_vectors = pd.read_parquet(input_path)
         nn_model = NearestNeighbors()

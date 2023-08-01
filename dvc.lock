@@ -7,36 +7,36 @@ stages:
       md5: cbc104379fdcc733a04ee499298ce133
       size: 120165547
     - path: ./src/data/data_cleanser.py
-      md5: 469f3273f9446f5e238776dd7c9fe111
-      size: 4464
+      md5: de3385741e4a3a68e138cebb6a98c8d4
+      size: 4452
     outs:
     - path: ./data/interim/GoodReads_books_clean.parquet
-      md5: 87090f189597833999b3ff7604c6b41e
-      size: 31158809
+      md5: 95ab5289225d08150b05aaa7f9cb3119
+      size: 31249992
   generate_extended_text:
     cmd: python ./src/features/text_features_generator.py ./data/interim/GoodReads_books_clean.parquet
       ./data/interim/extended_descriptions.parquet
     deps:
     - path: ./data/interim/GoodReads_books_clean.parquet
-      md5: 87090f189597833999b3ff7604c6b41e
-      size: 31158809
+      md5: 95ab5289225d08150b05aaa7f9cb3119
+      size: 31249992
     - path: ./src/features/text_features_generator.py
       md5: 19b286929913a2ef8ec413caa9e4d920
       size: 3047
     outs:
     - path: ./data/interim/extended_descriptions.parquet
-      md5: 1301e602b10eabc1820fb295ca852e46
-      size: 27445122
+      md5: 6b9dd93720d73f4c2de0821a8bb7098a
+      size: 27512158
     - path: ./data/interim/extended_max_descriptions.parquet
-      md5: 90e07fef548cce5eda1b99c278602ea3
-      size: 29621926
+      md5: 719c81dae5006a39810aa655db233f96
+      size: 29718214
   generate_vectorized_text:
     cmd: python ./src/models/text_vectorizer.py ./data/interim/extended_descriptions.parquet
       ./data/processed/description_vectorized.parquet params.yaml
     deps:
     - path: ./data/interim/extended_descriptions.parquet
-      md5: 1301e602b10eabc1820fb295ca852e46
-      size: 27445122
+      md5: 6b9dd93720d73f4c2de0821a8bb7098a
+      size: 27512158
     - path: ./src/models/text_vectorizer.py
       md5: 45f424890680f5547eb8256138ac27a1
       size: 3797
@@ -45,15 +45,15 @@ stages:
         vectorize.batch_size: 100
     outs:
     - path: ./data/processed/description_vectorized.parquet
-      md5: 3f2d87e757d0f6836180f67d7ad10c1b
-      size: 188340334
+      md5: b54e73d6f54c85d2226562d77e0f107f
+      size: 188340344
   generate_short_vectorized_text:
     cmd: python ./src/models/text_vectorizer.py ./data/interim/GoodReads_books_clean.parquet
       ./data/processed/short_description_vectorized.parquet params.yaml
     deps:
     - path: ./data/interim/GoodReads_books_clean.parquet
-      md5: 87090f189597833999b3ff7604c6b41e
-      size: 31158809
+      md5: 95ab5289225d08150b05aaa7f9cb3119
+      size: 31249992
     - path: ./src/models/text_vectorizer.py
       md5: 45f424890680f5547eb8256138ac27a1
       size: 3797
@@ -62,15 +62,15 @@ stages:
         vectorize.batch_size: 100
     outs:
     - path: ./data/processed/short_description_vectorized.parquet
-      md5: ce9d1b438b8402d266f6f53fc0c45185
-      size: 188289845
+      md5: 51ff488a87f8f056e586b9d7e20417c5
+      size: 188289893
   generate_max_vectorized_text:
     cmd: python ./src/models/text_vectorizer.py ./data/interim/extended_max_descriptions.parquet
       ./data/processed/max_description_vectorized.parquet params.yaml
     deps:
     - path: ./data/interim/extended_max_descriptions.parquet
-      md5: 90e07fef548cce5eda1b99c278602ea3
-      size: 29621926
+      md5: 719c81dae5006a39810aa655db233f96
+      size: 29718214
     - path: ./src/models/text_vectorizer.py
       md5: 45f424890680f5547eb8256138ac27a1
       size: 3797
@@ -79,5 +79,5 @@ stages:
         vectorize.batch_size: 100
     outs:
     - path: ./data/processed/max_description_vectorized.parquet
-      md5: 402d0fcaad995b216fc2480556f2ed1d
-      size: 188342105
+      md5: dc3f5b69a0eb21cc4dec940614f90ca6
+      size: 188342101
