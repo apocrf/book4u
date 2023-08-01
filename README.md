@@ -66,6 +66,18 @@ Project Organization
     │
     └── start.py           <- Start file.
 
+### Developing
+create environment via poertry
+
+```bash
+poerty install
+poerty lock
+```
+add broken torch dependencies via pip
+```bash
+pip3 install "transformers[torch]" 
+```
+
 
 --------
 
