@@ -13,6 +13,11 @@ Team: Andrey Korotkiy, Kirill Voronin, Kirill Surkov
 
 - [Miro Board](https://miro.com/app/board/uXjVMZlbv2E=/)
 
+Project Architecture
+------------
+![architecture](/docs/architecture_v009.png)
+
+
 Project Organization
 ------------
 
